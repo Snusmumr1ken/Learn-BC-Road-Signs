@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     Map<String, Sign> idSign;
     Map<Sign.Type, List<String>> typeToDescriptions;
 
+    int questionIdx = 0;
+    Question currentQuestion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -49,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showQuestion(questions.get(0));
+        currentQuestion = questions.get(questionIdx);
+        Log.d(DEBUG, "Current question: " + currentQuestion);
+        showQuestion(currentQuestion);
     }
 
     private void showQuestion(Question question) {
@@ -57,19 +65,20 @@ public class MainActivity extends AppCompatActivity {
         questionLabel.setText(question.question);
 
         final ImageView image = findViewById(R.id.question_image);
-        Log.d(DEBUG, question.sign.id);
+        Log.d(DEBUG, "Current question: " + question.question);
         final int resourceId = getResources().getIdentifier("@drawable/" + question.sign.id, "drawable", getPackageName());
         final Drawable drawable = getDrawable(resourceId);
         image.setImageDrawable(drawable);
 
-        final RadioButton o1 = findViewById(R.id.answer_option_1);
-        o1.setText(question.answers.get(0));
-        final RadioButton o2 = findViewById(R.id.answer_option_2);
-        o2.setText(question.answers.get(1));
-        final RadioButton o3 = findViewById(R.id.answer_option_3);
-        o3.setText(question.answers.get(2));
-        final RadioButton o4 = findViewById(R.id.answer_option_4);
-        o4.setText(question.answers.get(3));
+        RadioGroup radioGroup = findViewById(R.id.radio_answers);
+        Drawable simpleBackground = getDrawable(R.drawable.textshape);
+
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            final RadioButton button = (RadioButton) radioGroup.getChildAt(i);
+            button.setBackground(simpleBackground);
+            button.setText(question.answers.get(i));
+            button.setEnabled(true);
+        }
     }
 
     private void initializeQuestions() throws JSONException {
@@ -149,5 +158,55 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
         return json;
+    }
+
+    public void onVerifyButtonClicked(View view) {
+        RadioGroup radioGroup = findViewById(R.id.radio_answers);
+
+        RadioButton clickedButton = null;
+        RadioButton correctButton = null;
+
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            RadioButton button = (RadioButton) radioGroup.getChildAt(i);
+            button.setEnabled(false);
+
+            if (button.getText().equals(currentQuestion.answer)) {
+                correctButton = button;
+            }
+
+            if (button.isChecked()) {
+                clickedButton = button;
+            }
+        }
+
+        Drawable greenBack = getDrawable(R.drawable.correct_answer);
+        correctButton.setBackground(greenBack);
+
+        if (clickedButton != null) {
+            if (clickedButton != correctButton) {
+                Drawable redBack = getDrawable(R.drawable.wrong_answer);
+                clickedButton.setBackground(redBack);
+            }
+        }
+
+        view.setVisibility(View.GONE);
+        Button nextQuestionButton = findViewById(R.id.next_button);
+        nextQuestionButton.setVisibility(View.VISIBLE);
+
+        questionIdx++;
+    }
+
+    public void onNextButtonClicked(View view) {
+        view.setVisibility(View.GONE);
+        Button verifyButton = findViewById(R.id.verify_button);
+        verifyButton.setVisibility(View.VISIBLE);
+
+        if (questionIdx == questions.size()) {
+            Collections.shuffle(questions);
+            questionIdx = 0;
+        }
+
+        currentQuestion = questions.get(questionIdx);
+        showQuestion(currentQuestion);
     }
 }

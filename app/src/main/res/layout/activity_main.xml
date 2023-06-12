@@ -17,7 +17,7 @@
         android:padding="5dp"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:background="@drawable/simpletextshape"
+        android:background="@drawable/textshape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,35 +49,31 @@
         <RadioButton android:id="@+id/answer_option_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/simpletextshape"
+            android:background="@drawable/textshape"
             android:text="Machine"
             android:textSize="11pt"
-            android:layout_marginVertical="5dp"
-            android:onClick="onRadioButtonClicked" />
+            android:layout_marginVertical="5dp" />
         <RadioButton android:id="@+id/answer_option_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/simpletextshape"
+            android:background="@drawable/textshape"
             android:layout_marginVertical="5dp"
             android:text="Apple"
-            android:textSize="11pt"
-            android:onClick="onRadioButtonClicked"/>
+            android:textSize="11pt"/>
         <RadioButton android:id="@+id/answer_option_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/simpletextshape"
+            android:background="@drawable/textshape"
             android:layout_marginVertical="5dp"
             android:text="Democracy"
-            android:textSize="11pt"
-            android:onClick="onRadioButtonClicked"/>
+            android:textSize="11pt"/>
         <RadioButton android:id="@+id/answer_option_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/simpletextshape"
+            android:background="@drawable/textshape"
             android:layout_marginVertical="5dp"
             android:text="Cezar"
-            android:textSize="11pt"
-            android:onClick="onRadioButtonClicked"/>
+            android:textSize="11pt"/>
     </RadioGroup>
 
 
@@ -94,6 +90,24 @@
         android:paddingStart="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintVertical_bias="0.95"
+        android:onClick="onVerifyButtonClicked"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_button"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:text="NEXT"
+        android:textColor="@color/white"
+        android:textSize="11pt"
+        android:layout_marginHorizontal="30dp"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        android:onClick="onNextButtonClicked"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
