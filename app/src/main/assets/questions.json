@@ -1,0 +1,44 @@
+{
+  "questions": [
+    {
+      "signId" : "stop",
+      "question": "The following sign represents",
+      "answer" : "description"
+    },
+    {
+      "signId" : "stop",
+      "question" : "The following sign's type is",
+      "answer" : "type"
+    },
+    {
+      "signId" : "give_the_right_of_way",
+      "question": "The following sign represents",
+      "answer" : "description"
+    },
+    {
+      "signId" : "give_the_right_of_way",
+      "question" : "The following sign's type is",
+      "answer" : "type"
+    },
+    {
+      "signId" : "maximum_speed",
+      "question": "The following sign represents",
+      "answer" : "description"
+    },
+    {
+      "signId" : "maximum_speed",
+      "question" : "The following sign's type is",
+      "answer" : "type"
+    },
+    {
+      "signId" : "lower_speed_limit_ahead",
+      "question": "The following sign represents",
+      "answer" : "description"
+    },
+    {
+      "signId" : "lower_speed_limit_ahead",
+      "question" : "The following sign's type is",
+      "answer" : "type"
+    }
+  ]
+}
