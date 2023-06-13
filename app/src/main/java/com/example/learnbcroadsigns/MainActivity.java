@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     List<Question> questions;
     List<Sign> signs;
     Map<String, Sign> idSign;
-    Map<Sign.Type, List<String>> typeToDescriptions;
+    Map<String, List<String>> typeToDescriptions;
 
     int questionIdx = 0;
     Question currentQuestion;
@@ -102,9 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
             final List<String> possibleAnswers = (answerType.equals("description")) ?
                     typeToDescriptions.get(currSign.type) :
-                    Stream.of(Sign.Type.values())
-                        .map(Enum::name)
-                        .collect(Collectors.toList());
+                    new ArrayList<String>(Arrays.asList("School, playground and crosswalk", "Lane use", "Turn control", "Parking"));
 
             final Question question = new Question(
                     currSign,
@@ -135,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
             final String description = curr.getString("description");
             final String type = curr.getString("type");
 
-            List<String> descriptions = typeToDescriptions.getOrDefault(Sign.Type.valueOf(type), new ArrayList<>());
+            List<String> descriptions = typeToDescriptions.getOrDefault(type, new ArrayList<>());
             descriptions.add(description);
-            typeToDescriptions.put(Sign.Type.valueOf(type), descriptions);
+            typeToDescriptions.put(type, descriptions);
 
             final Sign sign = new Sign(id, description, type);
             Log.d(DEBUG, "Sign found: " + sign);

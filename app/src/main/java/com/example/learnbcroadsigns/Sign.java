@@ -5,12 +5,12 @@ import androidx.annotation.NonNull;
 public class Sign {
     final String id;
     final String description;
-    final Type type;
+    final String type;
 
     public Sign(String id, String description, String type) {
         this.id = id;
         this.description = description;
-        this.type = Type.valueOf(type);
+        this.type = type;
     }
 
     @NonNull
@@ -21,13 +21,5 @@ public class Sign {
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 '}';
-    }
-
-    enum Type {
-        REGULATORY,
-        SCHOOL,
-        LANE_USE,
-        TURN_CONTROL,
-        PARKING
     }
 }

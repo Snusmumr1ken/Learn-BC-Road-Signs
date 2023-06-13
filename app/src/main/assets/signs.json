@@ -3,22 +3,22 @@
     {
       "id" : "stop",
       "description" : "Stop completely",
-      "type" : "REGULATORY"
+      "type" : "Regulatory"
     },
     {
       "id" : "give_the_right_of_way",
       "description" : "Give the right-of-way",
-      "type" : "REGULATORY"
+      "type" : "Regulatory"
     },
     {
       "id" : "maximum_speed",
       "description" : "The maximum legal speed",
-      "type" : "REGULATORY"
+      "type" : "Regulatory"
     },
     {
       "id" : "lower_speed_limit_ahead",
       "description" : "Indicates a lower\nspeed limit ahead",
-      "type" : "REGULATORY"
+      "type" : "Regulatory"
     }
   ]
 }
