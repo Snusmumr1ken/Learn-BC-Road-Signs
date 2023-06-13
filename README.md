@@ -5,7 +5,7 @@
 	</a>
 
 ## Description
-Learn BC Road Signs - is a simple Android application where you can test your knowledge of roads signs (British Columbia, Canada).
+Learn BC Road Signs - is a simple Android application where you can test your knowledge of road signs (British Columbia, Canada).
 
 <img src="/screenshots/1.jpg" width="300"> <img src="/screenshots/3.jpg" width="300"> <img src="/screenshots/2.jpg" width="300">
 
