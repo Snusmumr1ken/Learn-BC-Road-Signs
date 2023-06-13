@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     int questionIdx = 0;
     Question currentQuestion;
+    int correctAnswers = 0;
+    int wrongAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,20 +186,40 @@ public class MainActivity extends AppCompatActivity {
 
         if (clickedButton != null) {
             if (clickedButton != correctButton) {
+                // if it's a wrong answer
                 Drawable redBack = getDrawable(R.drawable.wrong_answer);
                 clickedButton.setBackground(redBack);
+                wrongAnswers++;
+            } else {
+                correctAnswers++;
             }
+        } else {
+            // if there is no answer at all
+            wrongAnswers++;
         }
 
-        view.setVisibility(View.GONE);
+        view.setVisibility(View.INVISIBLE);
         Button nextQuestionButton = findViewById(R.id.next_button);
         nextQuestionButton.setVisibility(View.VISIBLE);
 
         questionIdx++;
+
+        setCorrectWrongCounters();
+    }
+
+    private void setCorrectWrongCounters() {
+        TextView correctAnswersCountView = findViewById(R.id.correct_answers_count);
+        TextView wrongAnswersCountView = findViewById(R.id.wrong_answers_count);
+
+        String correct = "Correct: " + correctAnswers;
+        String wrong = "Wrong: " + wrongAnswers;
+
+        correctAnswersCountView.setText(correct);
+        wrongAnswersCountView.setText(wrong);
     }
 
     public void onNextButtonClicked(View view) {
-        view.setVisibility(View.GONE);
+        view.setVisibility(View.INVISIBLE);
         Button verifyButton = findViewById(R.id.verify_button);
         verifyButton.setVisibility(View.VISIBLE);
 
